@@ -12,14 +12,10 @@
     <artifactId>hudi-partition-demo</artifactId>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.11.8</scala.version>
-        <scala.compat.version>2.11.8</scala.compat.version>
         <scala.binary.version>2.11</scala.binary.version>
-        <spark.version>2.4.4</spark.version>
-        <hudi.version>0.5.3</hudi.version>
-        <scalikejdbc.version>2.5.0</scalikejdbc.version>
         <hadoop.version>2.7.3</hadoop.version>
+        <hive.version>2.3.4</hive.version>
     </properties>
 
     <dependencies>
@@ -56,7 +52,7 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>2.3.1</version>
+            <version>${hive.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.mail</groupId>
@@ -71,7 +67,7 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-exec</artifactId>
-            <version>2.3.1</version>
+            <version>${hive.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.mail</groupId>
@@ -97,19 +93,6 @@
                     <target>1.8</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.15.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
