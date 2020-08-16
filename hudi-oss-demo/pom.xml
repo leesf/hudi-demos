@@ -13,7 +13,7 @@
 
     <properties>
         <hudi.version>0.5.3</hudi.version>
-        <spark.version>2.4.2</spark.version>
+        <spark.version>2.4.4</spark.version>
         <hadoop-aliyun.version>3.2.1</hadoop-aliyun.version>
         <aliyun-sdk-oss.version>3.8.1</aliyun-sdk-oss.version>
         <hadoop.version>3.1.1</hadoop.version>
@@ -64,7 +64,6 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>

@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>hudi-oss-demo</module>
+        <module>hudi-partition-demo</module>
     </modules>
 
 
