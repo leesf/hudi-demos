@@ -14,7 +14,7 @@ import org.apache.spark.sql.SaveMode;
 public class MultiPartitionDemo extends PartitionDemo {
     private static final String BASE_PATH = "file:/tmp/hudi-partitions/multiPartitionDemo";
     private static final String TABLE_NAME = "multiPartitionDemo";
-    private static final String PARTITION_FILED = "location,sex";
+    private static final String PARTITION_FILED = "sex";
     private static final String KEY_GENERATOR = ComplexKeyGenerator.class.getName();
     private static final String EXTRACTOR_CLASS = MultiPartKeysValueExtractor.class.getName();
 

@@ -55,7 +55,9 @@ public class PartitionDemo {
                 option(DataSourceWriteOptions.PARTITIONPATH_FIELD_OPT_KEY(), partitionFields).
                 option(DataSourceWriteOptions.KEYGENERATOR_CLASS_OPT_KEY(), keyGenerator).
                 option(TABLE_NAME, tableName).
-                option("hoodie.datasource.hive_sync.enable", true).
+                option("hoodie.datasource.write.operation", "insert").
+                option("hoodie.datasource.write.insert.drop.duplicates", "false").
+                option("hoodie.datasource.hive_sync.enable", false).
                 option("hoodie.datasource.hive_sync.table", tableName).
                 option("hoodie.datasource.hive_sync.username", "root").
                 option("hoodie.datasource.hive_sync.password", "123456").
