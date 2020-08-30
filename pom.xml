@@ -11,11 +11,13 @@
     <modules>
         <module>hudi-oss-demo</module>
         <module>hudi-partition-demo</module>
+        <module>hudi-demo-common</module>
+        <module>hudi-multiversion-demo</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hudi.version>0.5.3</hudi.version>
+        <hudi.version>0.6.0</hudi.version>
         <spark.version>2.4.4</spark.version>
     </properties>
 
