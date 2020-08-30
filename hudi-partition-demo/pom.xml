@@ -12,13 +12,17 @@
     <artifactId>hudi-partition-demo</artifactId>
 
     <properties>
-        <scala.version>2.11.8</scala.version>
-        <scala.binary.version>2.11</scala.binary.version>
         <hadoop.version>2.7.3</hadoop.version>
         <hive.version>2.3.4</hive.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.leesf</groupId>
+            <artifactId>hudi-demo-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${scala.binary.version}</artifactId>

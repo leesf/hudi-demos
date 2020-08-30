@@ -1,7 +1,7 @@
 package com.leesf.partitions;
 
-import com.leesf.utils.CustomDataGenerator;
-import com.leesf.utils.OpType;
+import com.leesf.data.CustomDataGenerator;
+import com.leesf.data.OpType;
 import org.apache.hudi.DataSourceWriteOptions;
 import org.apache.hudi.hive.MultiPartKeysValueExtractor;
 import org.apache.hudi.keygen.ComplexKeyGenerator;

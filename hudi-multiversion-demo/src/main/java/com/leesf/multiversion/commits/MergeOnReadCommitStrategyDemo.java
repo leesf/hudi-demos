@@ -1,9 +1,8 @@
 package com.leesf.multiversion.commits;
 
-import com.leesf.multiversion.CommitStrategyMultiVersion;
+import com.leesf.data.CustomDataGenerator;
+import com.leesf.data.OpType;
 import com.leesf.multiversion.MultiVersionDemo;
-import com.leesf.multiversion.utils.CustomDataGenerator;
-import com.leesf.multiversion.utils.OpType;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SaveMode;

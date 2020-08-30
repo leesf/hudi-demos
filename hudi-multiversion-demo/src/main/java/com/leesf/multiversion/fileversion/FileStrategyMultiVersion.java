@@ -1,4 +1,6 @@
-package com.leesf.multiversion;
+package com.leesf.multiversion.fileversion;
+
+import com.leesf.multiversion.MultiVersionDemo;
 
 import java.util.Map;
 

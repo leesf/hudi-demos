@@ -1,7 +1,7 @@
 package com.leesf.partitions;
 
-import com.leesf.utils.CustomDataGenerator;
-import com.leesf.utils.OpType;
+import com.leesf.data.CustomDataGenerator;
+import com.leesf.data.OpType;
 import org.apache.hudi.hive.NonPartitionedExtractor;
 import org.apache.hudi.keygen.NonpartitionedKeyGenerator;
 import org.apache.spark.sql.Dataset;
