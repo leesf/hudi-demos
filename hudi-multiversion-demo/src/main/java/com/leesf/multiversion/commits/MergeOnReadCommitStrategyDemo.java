@@ -10,8 +10,11 @@ import org.apache.spark.sql.SaveMode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * KEEP_LATEST_COMMITS Strategy, will retain two version of files.
+ */
 public class MergeOnReadCommitStrategyDemo extends CommitStrategyMultiVersion {
-    private static String basePath = "/tmp/multiversion/copyonwrite/";
+    private static String basePath = "/tmp/multiversion/mergeonread/";
 
     public MergeOnReadCommitStrategyDemo(Map<String, String> properties) {
         super(properties, basePath);
@@ -19,23 +22,29 @@ public class MergeOnReadCommitStrategyDemo extends CommitStrategyMultiVersion {
 
     public static void main(String[] args) {
         Map<String, String> config = new HashMap<>();
-        config.put("hoodie.keep.max.commits", "3");
-        config.put("hoodie.keep.min.commits", "2");
+        // config to keep there is 2 commit instants, so that the clean action make sense.
+        config.put("hoodie.keep.max.commits", "4");
+        config.put("hoodie.keep.min.commits", "3");
         config.put("hoodie.cleaner.commits.retained", "1");
-        MultiVersionDemo cowMultiVersionDemo = new MergeOnReadCommitStrategyDemo(config);
+        // enable inline compaction, true value is false
+        config.put("hoodie.compact.inline", "true");
+        // NOTE that when "hoodie.compact.inline.max.delta.commits" is less than hoodie.keep.max.commits,
+        // there will be no compaction since the delta active instant is less than "hoodie.compact.inline.max.delta.commits"
+        config.put("hoodie.compact.inline.max.delta.commits", "1");
+        MultiVersionDemo morMultiVersionDemo = new MergeOnReadCommitStrategyDemo(config);
 
         Dataset<Row> dataset = CustomDataGenerator.getCustomDataset(10, OpType.INSERT, spark);
 
-        cowMultiVersionDemo.writeHudi(dataset, SaveMode.Overwrite);
+        morMultiVersionDemo.writeHudi(dataset, SaveMode.Overwrite);
 
         for (int i = 0; i < 10; i++) {
             dataset = CustomDataGenerator.getCustomDataset(10, OpType.UPDATE, i, "shanghai", spark);
-            cowMultiVersionDemo.writeHudi(dataset, SaveMode.Append);
+            morMultiVersionDemo.writeHudi(dataset, SaveMode.Append);
         }
     }
 
     @Override
     public String tableType() {
-        return "COPY_ON_WRITE";
+        return "MERGE_ON_READ";
     }
 }

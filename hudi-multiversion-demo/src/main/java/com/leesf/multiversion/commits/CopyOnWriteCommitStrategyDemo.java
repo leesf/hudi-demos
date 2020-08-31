@@ -10,6 +10,9 @@ import org.apache.spark.sql.SaveMode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * KEEP_LATEST_COMMITS Strategy, will retain two version of files.
+ */
 public class CopyOnWriteCommitStrategyDemo extends CommitStrategyMultiVersion {
     private static String basePath = "/tmp/multiversion/copyonwrite/";
 
