@@ -1,4 +1,4 @@
-package com.leesf.multiversion.fileversion;
+package com.leesf.multiversion.fileversions;
 
 import com.leesf.multiversion.MultiVersionDemo;
 

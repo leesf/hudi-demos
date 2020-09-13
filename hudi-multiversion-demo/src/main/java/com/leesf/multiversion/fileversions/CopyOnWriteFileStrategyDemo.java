@@ -1,4 +1,4 @@
-package com.leesf.multiversion.fileversion;
+package com.leesf.multiversion.fileversions;
 
 import com.leesf.data.CustomDataGenerator;
 import com.leesf.data.OpType;
@@ -15,10 +15,10 @@ import java.util.Map;
 /**
  * KEEP_LATEST_FILE_VERSIONS Strategy, will retain one version of files.
  */
-public class MergeOnReadFileStrategyDemo extends CommitStrategyMultiVersion {
-    private static String basePath = "/tmp/multiversion/file/mergeonread/";
+public class CopyOnWriteFileStrategyDemo extends CommitStrategyMultiVersion {
+    private static String basePath = "/tmp/multiversion/file/copyonwrite/";
 
-    public MergeOnReadFileStrategyDemo(Map<String, String> properties) {
+    public CopyOnWriteFileStrategyDemo(Map<String, String> properties) {
         super(properties, basePath);
     }
 
@@ -28,7 +28,7 @@ public class MergeOnReadFileStrategyDemo extends CommitStrategyMultiVersion {
         config.put("hoodie.cleaner.fileversions.retained", "1");
         config.put("hoodie.cleaner.policy", HoodieCleaningPolicy.KEEP_LATEST_FILE_VERSIONS.name());
 
-        MultiVersionDemo cowMultiVersionDemo = new MergeOnReadFileStrategyDemo(config);
+        MultiVersionDemo cowMultiVersionDemo = new CopyOnWriteFileStrategyDemo(config);
 
         Dataset<Row> dataset = CustomDataGenerator.getCustomDataset(10, OpType.INSERT, spark);
 
