@@ -14,7 +14,7 @@ import java.util.Map;
  * KEEP_LATEST_COMMITS Strategy, will retain two version of files.
  */
 public class MergeOnReadCommitStrategyDemo extends CommitStrategyMultiVersion {
-    private static String basePath = "/tmp/multiversion/mergeonread/";
+    private static String basePath = "/tmp/multiversion/commits/mergeonread/";
 
     public MergeOnReadCommitStrategyDemo(Map<String, String> properties) {
         super(properties, basePath);

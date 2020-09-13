@@ -1,8 +1,10 @@
-package com.leesf.multiversion.commits;
+package com.leesf.multiversion.fileversion;
 
 import com.leesf.data.CustomDataGenerator;
 import com.leesf.data.OpType;
 import com.leesf.multiversion.MultiVersionDemo;
+import com.leesf.multiversion.commits.CommitStrategyMultiVersion;
+import org.apache.hudi.common.model.HoodieCleaningPolicy;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SaveMode;
@@ -11,22 +13,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * KEEP_LATEST_COMMITS Strategy, will retain two version of files.
+ * KEEP_LATEST_FILE_VERSIONS Strategy, will retain one version of files.
  */
-public class CopyOnWriteCommitStrategyDemo extends CommitStrategyMultiVersion {
-    private static String basePath = "/tmp/multiversion/commits/copyonwrite/";
+public class MergeOnReadFileStrategyDemo extends CommitStrategyMultiVersion {
+    private static String basePath = "/tmp/multiversion/file/mergeonread/";
 
-    public CopyOnWriteCommitStrategyDemo(Map<String, String> properties) {
+    public MergeOnReadFileStrategyDemo(Map<String, String> properties) {
         super(properties, basePath);
     }
 
     public static void main(String[] args) {
         Map<String, String> config = new HashMap<>();
-        // use HoodieCleaningPolicy.KEEP_LATEST_COMMITS and retains max 3 commits in the timeline and 2(1 + 1) version of data files.
-        config.put("hoodie.keep.max.commits", "3");
-        config.put("hoodie.keep.min.commits", "2");
-        config.put("hoodie.cleaner.commits.retained", "1");
-        MultiVersionDemo cowMultiVersionDemo = new CopyOnWriteCommitStrategyDemo(config);
+        // use HoodieCleaningPolicy.KEEP_LATEST_FILE_VERSIONS and retains max 1 version of data files.
+        config.put("hoodie.cleaner.fileversions.retained", "1");
+        config.put("hoodie.cleaner.policy", HoodieCleaningPolicy.KEEP_LATEST_FILE_VERSIONS.name());
+
+        MultiVersionDemo cowMultiVersionDemo = new MergeOnReadFileStrategyDemo(config);
 
         Dataset<Row> dataset = CustomDataGenerator.getCustomDataset(10, OpType.INSERT, spark);
 
